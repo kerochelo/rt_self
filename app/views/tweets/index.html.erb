@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Tweets</h1>
+<%= link_to 'collect', collect_tweets_path, method: :post, data: { confirm: 'gotcha?' } %>
 
 <table>
   <thead>
@@ -8,7 +8,6 @@
       <th>Tweet</th>
       <th>Body</th>
       <th>Entity</th>
-      <th colspan="3"></th>
     </tr>
   </thead>
 
@@ -18,9 +17,6 @@
         <td><%= tweet.tweet_id %></td>
         <td><%= tweet.body %></td>
         <td><%= tweet.entity %></td>
-        <td><%= link_to 'Show', tweet %></td>
-        <td><%= link_to 'Edit', edit_tweet_path(tweet) %></td>
-        <td><%= link_to 'Destroy', tweet, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

@@ -4,4 +4,7 @@ class TweetsController < ApplicationController
     @tweets = Tweet.all
   end
 
+  def collect
+    redirect_to root_path
+  end
 end

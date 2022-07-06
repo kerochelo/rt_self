@@ -1,19 +1,20 @@
 class TwitterManager
   extend ActiveSupport::Concern
 
-  def self.init
-    client
+  def search_hashtag(words)
+    search_words = words
+    client.search(search_words, lang: "ja")
   end
 
   private
 
   def client
-    client = Twitter::REST::Client.new do |c|
-      c.consumer_key = Rails.application.credentials.twitter[:api_key]
-      c.consumer_secret = Rails.application.credentials.twitter[:api_secret]
-      c.access_token = Rails.application.credentials.twitter[:access_token]
-      c.access_token_secret = Rails.application.credentials.twitter[:access_token_secret]
-    end
-    client
+    config = {
+      consumer_key:  Rails.application.credentials.twitter[:api_key],
+      consumer_secret: Rails.application.credentials.twitter[:api_secret],
+      bearer_token: Rails.application.credentials.twitter[:bearer_token]
+    }
+
+    @client ||= Twitter::REST::Client.new(config)
   end
 end
